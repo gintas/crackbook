@@ -1,6 +1,6 @@
 var BODY_POLL_MS = 30;
 var DIMMER_DIV_ID = '_crackbook_dimmer_';
-var DIMMER_TEXT = "Wait %d seconds for the content to appear.";
+//var DIMMER_TEXT = "Wait %d seconds for the content to appear.";
 var DIMMER_SWITCH_TEXT = "The timer restarts if you switch away from this tab.";
 
 var timeoutFn = function() {
@@ -40,6 +40,11 @@ function setTimer(dimmer, delay) {
   timerIdInput.value = timerId;
 }
 
+function getCustomText(appearance,name)
+ {
+  return (name in appearance)?appearance[name]:getLocal(name)||'';
+ }
+
 function addDimmer(delay, appearance) {
   var dimmer = document.createElement('div');
   dimmer.id = DIMMER_DIV_ID;
@@ -54,14 +59,14 @@ function addDimmer(delay, appearance) {
   dimmer.style.fontVariant = 'normal';
 
   var text = document.createElement("div");
-  text.innerHTML = DIMMER_TEXT.replace('%d', Math.round(delay));
+  console.log(text.innerHTML = getCustomText(appearance,'custDimmerText').replace('%d', Math.round(delay)));
   text.style.textAlign = "center";
   text.style.paddingTop = "50px";
   text.style.fontSize = "20px";
   dimmer.appendChild(text);
 
   var switch_text = document.createElement("div");
-  switch_text.innerHTML = DIMMER_SWITCH_TEXT;
+  switch_text.innerHTML = getCustomText(appearance,'custSwitchText');
   switch_text.id = DIMMER_DIV_ID + 'stayput';
   switch_text.style.display = "none";
   switch_text.style.textAlign = "center";

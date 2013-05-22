@@ -52,7 +52,10 @@ var_defaults = {
   weekdays: '"12345"',
   day: '""',
   dayHits: '0',
-  hitLogKeys: '[]'
+  hitLogKeys: '[]',
+  custDimmerText: '"Wait %d seconds for the content to appear!"',
+  custSwitchText: '"The timer restarts if you switch away from this tab."',
+  custNotificationText: '"Time to get back to work!"'
 };
 
 function getLocal(varname) {

@@ -10,6 +10,11 @@ var API_URL = 'http://crackbook.info/api/';
 var NOTIFICATION_THRESHOLD = 5;
 var NOTIFICATION_HIT_INTERVAL = 5;
 
+function getAppearance()
+ {
+  return {transparent: false,custDimmerText:getLocal('custDimmerText'),custSwitchText:getLocal('custDimmerText')};
+ }
+
 function drawIcon(img_name) {
   img_path = "images/" + img_name;
   chrome.browserAction.setIcon({ path: img_path });
@@ -164,7 +169,7 @@ function handleNewPage(newTab, selectedTab, sendResponse) {
     var tabIsActive = (newTab.id == selectedTab.id);
     sendResponse({dimmerAction: tabIsActive ? "create" : "create_suspended",
                   delay: getLocal('dimmerDelay'),
-                  appearance: {transparent: false}});
+                  appearance: getAppearance()});
     if (tabIsActive) {
       lastDimmedTabId = newTab.id;
     }
@@ -235,7 +240,7 @@ function newPageHandler(request, sender, sendResponse) {
 function showNotification() {
   var notification_obj = webkitNotifications.createNotification(
           'images/hamburger-128px.png',
-          NOTIFICATION_TEXT,
+          getLocal('custNotificationText'),
           "");
   notification_obj.show();
   window.setTimeout(function() { notification_obj.cancel() }, 3000);

@@ -132,6 +132,10 @@ function showSettings() {
   document.getElementById("dimmerDelay").value = getLocal('dimmerDelay').toFixed(2);
   document.getElementById("dimmerDelayIncrement").value = getLocal('dimmerDelayIncrement').toFixed(2);
   document.getElementById("checkActiveTab").checked = getLocal('checkActiveTab');
+  document.getElementById("custDimmerText").value = getLocal('custDimmerText');
+  document.getElementById("custSwitchText").value = getLocal('custSwitchText');
+  document.getElementById("custNotificationText").value = getLocal('custNotificationText');
+
 
   // Junk domains.
   clearDomainsFromPage('siteBlacklist');
@@ -197,6 +201,10 @@ function saveSettings() {
 
   var reporting = document.getElementById("upload_stats").checked;
 
+  var custDimmerText = document.getElementById('custDimmerText').value||getLocal('custDimmerText');
+  var custSwitchText = document.getElementById('custSwitchText').value||getLocal('custDimmerText');
+  var custNotificationText = document.getElementById('custNotificationText').value||getLocal('custNotificationText');
+
   // Write settings to storage.
   setLocal('reporting', reporting);
   setLocal('dimmerThreshold', dimmerThreshold);
@@ -208,6 +216,9 @@ function saveSettings() {
   setLocal('startTime', startTime);
   setLocal('endTime', endTime);
   setLocal('weekdays', weekdays);
+  setLocal('custDimmerText', custDimmerText);
+  setLocal('custSwitchText', custSwitchText);
+  setLocal('custNotificationText', custNotificationText);
 
   bgPage().submitConfigChange();
   bgPage().updateIcon(null, true);
