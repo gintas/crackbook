@@ -1,6 +1,6 @@
 {
   "name": "Crackbook",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "manifest_version": 2,
   "description": "Limit junk sites in your daily infodiet.",
   "icons": {
@@ -18,7 +18,7 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["dimmer.js"],
+      "js": ["lib.js","dimmer.js"],
       "run_at": "document_start"
     }
   ],
