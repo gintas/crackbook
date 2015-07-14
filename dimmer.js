@@ -108,6 +108,32 @@ function watchUrlChanges() {
   }
 }
 
+var urlparsera = document.createElement('a');
+var urlparserb = document.createElement('a');
+
+// compares urls based on all properties except hash
+// i.e. http://foo.com/bar#baz == http://foo.com/bar#qux
+function urlReallyChanged(urla, urlb) {
+  if (urla == urlb) {
+    return false;
+  } else {
+    var urlpa = urlparsera;
+    urlpa.href = urla;
+    
+    var urlpb = urlparserb;
+    urlpb.href = urlb;
+    
+    if (urlpa.protocol == urlb.protocol &&
+        urlpa.hostname == urlpb.hostname &&
+        urlpa.port == urlpb.port &&
+        urlpa.pathname == urlb.pathname &&
+        urlpa.search == urlb.search) {
+          return true
+        }
+    return false;
+  }
+}
+
 // Actions
 
 function create(dimmer_el, delay, appearance) {
