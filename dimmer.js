@@ -102,7 +102,7 @@ function addDimmer(delay, appearance) {
 
 /* Watches for URL changes and reshows the dimmer if a change is detected. */
 function watchUrlChanges() {
-  if (document.URL != original_url) {
+  if (urlReallyChanged(document.URL, original_url)) {
     original_url = document.URL;
     dim('reshow');
   }
